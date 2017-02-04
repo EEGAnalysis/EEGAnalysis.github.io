@@ -60,7 +60,78 @@
     </header>
 </head>
 <body>
-<h1 id="page_title">HPStream</h1>
-<h2 id="page_subtitle">Subspace Clustering Algorithm for Data Streams</h2>
-</body>
+<body>
+<h1 id="hpstream">HPStream</h1>
+<h2 id="goal-of-the-hpstream-algorithm">Goal of the HPStream algorithm:</h2>
+<ul>
+<li>Find a (<span class="math inline"><em>k</em> + 1</span>)-partition of the data (last partition are outliers)</li>
+<li>Find a set of dimensions for each cluster s.t. the mean cardinality of the sets is equal to <span class="math inline"><em>l</em></span> (parameter).</li>
+</ul>
+<h2 id="fading-cluster-structure">Fading cluster structure</h2>
+<ul>
+<li>Half life of a point <span class="math inline"><em>t</em><sub>0</sub></span> of a point: <span class="math inline"><em>f</em>(<em>t</em><sub>0</sub>)=(1/2)<em>f</em>(0)</span> (rate of decay of the weight assigned to each data point).</li>
+<li>Data point weight: <span class="math inline"><em>f</em>(<em>t</em>)=2<sup>−<em>λ</em><em>t</em></sup></span></li>
+<li>Fading cluster structure of a set of points <span class="math inline">𝒞 = {<em>X</em><sub><em>i</em><sub>1</sub></sub>, …, <em>X</em><sub><em>i</em><sub><em>n</em></sub></sub>}</span> with time stamps <span class="math inline"><em>T</em><sub><em>i</em><sub>1</sub></sub>…<em>T</em><sub><em>i</em><sub><em>n</em></sub></sub></span>: <span class="math inline"><em>F</em><em>C</em>(𝒞)=(<em>F</em><em>C</em>2<sup><em>x</em></sup>(𝒞, <em>t</em>),<em>F</em><em>C</em>1<sup><em>x</em></sup>(𝒞, <em>t</em>),<em>W</em>(<em>t</em>))</span>:
+<ul>
+<li><span class="math inline"><em>F</em><em>C</em>2<sup><em>x</em></sup>(𝒞, <em>t</em>)=∑<sub><em>k</em> = 1</sub><sup><em>n</em></sup><em>f</em>(<em>t</em> − <em>T</em><sub><em>i</em><sub><em>k</em></sub></sub>)(<em>x</em><sub><em>i</em><sub><em>k</em></sub></sub><sup><em>j</em></sup>)<sup>2</sup></span></li>
+<li><span class="math inline"><em>F</em><em>C</em>1<sup><em>x</em></sup>(𝒞, <em>t</em>)=∑<sub><em>k</em> = 1</sub><sup><em>n</em></sup><em>f</em>(<em>t</em> − <em>T</em><sub><em>i</em><sub><em>k</em></sub></sub>)<em>x</em><sub><em>i</em><sub><em>k</em></sub></sub><sup><em>j</em></sup></span></li>
+<li><span class="math inline">$W(t) = \sum_{k=1}^n f(t-T_{i_k})$</span></li>
+<li><span class="math inline">ℬ(𝒞)</span>: bit vector of relevant dimensions.</li>
+</ul></li>
+<li>Properties of fading structure:
+<ul>
+<li><span class="math inline"><em>F</em><em>C</em>(𝒞<sub>1</sub> ∪ 𝒞<sub>2</sub>, <em>t</em>)=<em>F</em><em>C</em>(𝒞<sub>1</sub>, <em>t</em>)+<em>F</em><em>C</em>(𝒞<sub>2</sub>, <em>t</em>)</span></li>
+<li>If no points are added in the time interval <span class="math inline">(<em>t</em>, <em>t</em> + <em>δ</em><em>t</em>)</span>, then <span class="math inline"><em>F</em><em>C</em>(𝒞, <em>t</em> + <em>δ</em><em>t</em>)=<em>e</em><sup>−<em>λ</em><em>δ</em><em>t</em></sup><em>F</em><em>C</em>(𝒞, <em>t</em>)</span></li>
+</ul></li>
+</ul>
+<h2 id="hpstream-algorithm">HPStream Algorithm</h2>
+<ul>
+<li>Initialization:
+<ul>
+<li>Receive <span class="math inline"><em>I</em><em>n</em><em>i</em><em>t</em><em>N</em><em>u</em><em>m</em><em>b</em><em>e</em><em>r</em></span> Points</li>
+<li>Compute <span class="math inline"><em>k</em></span> clusters using K-means</li>
+<li>Select only <span class="math inline"><em>l</em></span> dimensions per cluster using the same method</li>
+<li>Recompute an assignment according to the subspaces</li>
+<li>Repeate until convergence</li>
+</ul></li>
+<li>Normalization:
+<ul>
+<li>Compute <span class="math inline"><em>σ</em><sub><em>d</em></sub></span> std along each dimension for an initial sample of the datapoints</li>
+<li>Devide the coodrinate of each new point by the std.</li>
+<li>Recompute <span class="math inline"><em>σ</em><sub><em>d</em></sub></span> at an interval of <span class="math inline"><em>N</em>′</span> points</li>
+<li>If <span class="math inline"><em>σ</em><sub><em>d</em></sub></span> changes to <span class="math inline"><em>σ</em>′<sub><em>d</em></sub></span> update fading clusters:
+<ul>
+<li><span class="math inline"><em>F</em><em>C</em>2<sup><em>x</em></sup>(𝒞, <em>t</em>)←<em>F</em><em>C</em>2<sup><em>x</em></sup>(𝒞, <em>t</em>)×<em>σ</em><sub><em>d</em></sub><sup>2</sup>/<em>σ</em>′<sub><em>d</em></sub><sup>2</sup></span></li>
+<li><span class="math inline"><em>F</em><em>C</em>1<sup><em>x</em></sup>(𝒞, <em>t</em>)←<em>F</em><em>C</em>1<sup><em>x</em></sup>(𝒞, <em>t</em>)×<em>σ</em><sub><em>d</em></sub>/<em>σ</em>′<sub><em>d</em></sub></span></li>
+</ul></li>
+</ul></li>
+<li>Update the temporal decay function for each cluster:
+<ul>
+<li>Let <span class="math inline"><em>t</em></span> denote the current time and <span class="math inline"><em>t</em><sup><em>u</em><em>p</em></sup></span> the last update time for a given cluster. Multiply each fading cluster by: <span class="math inline"><em>e</em><sup>−<em>λ</em>(<em>t</em> − <em>t</em><sup><em>u</em><em>p</em></sup>)</sup></span></li>
+</ul></li>
+<li><p>Compute <span class="math inline"><em>l</em></span> relevant dimensions(<span class="math inline"><em>F</em><em>C</em><em>S</em></span>, <span class="math inline"><em>l</em></span>, <span class="math inline"><em>X</em></span>)</p>
+<ul>
+<li>Create <span class="math inline">|<em>F</em><em>C</em><em>S</em>|</span> tentative fading clusters by ading <span class="math inline"><em>X</em></span> to each existing Fading cluster (to avoid selecting only the dimensions of very small clusters)</li>
+<li>Compute the radius along each dimension</li>
+<li>Pick the <span class="math inline">|<em>F</em><em>C</em><em>S</em> × <em>l</em>|</span> dimensions with least radii</li>
+<li>Create the bit vector <span class="math inline">ℬ(𝒞<sub><em>r</em></sub>)</span> for each fading cluster</li>
+</ul></li>
+<li>Compute projected (segmental manhattan) distances to each fading cluster and find the closest center.</li>
+<li>Compute the limiting radius (mean of the STD of the cluster measured along its subspace only multiplied by <span class="math inline"><em>τ</em></span>).</li>
+<li>If the new point is within the radius add it, otherwise create a new fading cluster.</li>
+<li>In order to keep constant the number of clusters, remove the one to which the least recent updating was performed</li>
+<li><p>Remove clusters with 0 dimensions assigned to them</p></li>
+</ul>
+<h2 id="parameters">Parameters</h2>
+<ul>
+<li>Decay rate (lambda) : 0.5</li>
+<li>spread radius factor (tau) : 2</li>
+<li>InitNumber : 2000</li>
+<li>Average number of projected dimensions (l) : 20 (intrusions), 8 (covertype)</li>
+<li>speed : 200 points per time unit and horizon H = 1</li>
+<li>speed : 100 points per time unit and horizon H = 10</li>
+<li>Number of clusters: Was set equal to the number of micro-clusters in Clustream, which is equal to 10 times the real number of clusters.</li>
+<li>Std update frequence (N’)</li>
+</ul>
+</body></body>
 </html>
