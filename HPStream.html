@@ -60,9 +60,8 @@
     </header>
 </head>
 <body>
-<body>
-<h1 id="hpstream">HPStream</h1>
-<h2 id="goal-of-the-hpstream-algorithm">Goal of the HPStream algorithm:</h2>
+<h1 id="hpstream"><a href="http://web.engr.illinois.edu/~hanj/pdf/vldb04_projclstream.pdf">HPStream</a></h1>
+<p>Algorithm created by Charu C. Aggarwal, Jiawei Han, Jianyong Wang and Philip S. Yu in 2004 ## Goal of the HPStream algorithm:</p>
 <ul>
 <li>Find a (<span class="math inline"><em>k</em> + 1</span>)-partition of the data (last partition are outliers)</li>
 <li>Find a set of dimensions for each cluster s.t. the mean cardinality of the sets is equal to <span class="math inline"><em>l</em></span> (parameter).</li>
@@ -124,14 +123,14 @@
 </ul>
 <h2 id="parameters">Parameters</h2>
 <ul>
-<li>Decay rate (lambda) : 0.5</li>
-<li>spread radius factor (tau) : 2</li>
+<li>Decay rate (<span class="math inline"><em>λ</em></span>) : 0.5</li>
+<li>spread radius factor (<span class="math inline"><em>τ</em></span>) : 2</li>
 <li>InitNumber : 2000</li>
-<li>Average number of projected dimensions (l) : 20 (intrusions), 8 (covertype)</li>
+<li>Average number of projected dimensions (<span class="math inline"><em>l</em></span>) : 20 (intrusions), 8 (covertype)</li>
 <li>speed : 200 points per time unit and horizon H = 1</li>
 <li>speed : 100 points per time unit and horizon H = 10</li>
 <li>Number of clusters: Was set equal to the number of micro-clusters in Clustream, which is equal to 10 times the real number of clusters.</li>
 <li>Std update frequence (N’)</li>
 </ul>
-</body></body>
+</body>
 </html>
