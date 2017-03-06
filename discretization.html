@@ -43,7 +43,7 @@
       <a href="javascript:void(0)" class="dropbtn" onclick="myFunctionDT()">EEG Analysis</a>
       <div class="dropdown-content" id="dropteaching">
         <a href="./EEG.html">Motivation</a>
-        <a href="./discretizationn.html">Discretization</a>
+        <a href="./discretization.html">Discretization</a>
         <a href="./prediction.html">Prediction</a>
       </div>
     </li>
@@ -55,6 +55,12 @@
 
 <body>
 <h1 id="page_title">Discretization</h1>
-<p> Blablabla </p>
+<p> An increasing number of algorithms for inference from experimental data require discrete data as input. For example, dynamic Bayesian network methods and methods that use the framework of finite dynamical systems, such as Boolean networks, all take discrete input. Experimental data, however, are typically continuous and represented by computer floating point numbers. The translation from continuous to discrete data is crucial in preserving the variable dependencies and thus has a significant impact on the performance of the network inference algorithms. It's especially true for EEG signals.</p>
+
+<p>Our first (and current) approach use this kind of prediction algorithm although it exists other tools to predict continous time series. We are well aware of these methods but we made the choice to explore first this area and depending on our first results on real time captured data we will steer our research.</p>
+
+<p>Since we aim to develop a light software enable to predict in real time and on line if you are likely to have a heart-attack, a seizure or a cerebrovascular accident, we need to find an efficient way to discretize our data. Our literarture search lead us to SAX algorithm. This is a very simple, light (and efficient) way to discretize time series data without loosing too much original information. So starting from this point, we created a SAX-inspired algorithm to handle dynamic data.</p>
+
+<p>You can learn more about SAX algorithm <a href="./static_sax.html">here</a> and about Dynamic SAX algorithm <a href="./dynamic_SAX.html">here</a>. You can also access to the code in our <a href="https://github.com/TimeSeriesAnalysis/EEGAnalysis">repository</a>.</p>
 </body>
 </html>
