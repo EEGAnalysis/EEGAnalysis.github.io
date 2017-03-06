@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Sergio Peignier & Brice Denoun">
+  <title>Online EEG Analysis Project</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="./css/style.css">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  
+  <script>
+  /* When the user clicks on the button,
+  toggle between hiding and showing the dropdown content */
+  function myFunctionDN() {
+      document.getElementById("dropnotes").classList.toggle("show");
+  }
+  function myFunctionDT() {
+      document.getElementById("dropteaching").classList.toggle("show");
+  }
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function(e) {
+    if (!e.target.matches('.dropbtn')) {
+  
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      for (var d = 0; d < dropdowns.length; d++) {
+        var openDropdown = dropdowns[d];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+  </script>
+  <header>
+    <div class="menutop">
+    <ul>
+    <li><a href="./index.html">Context</a></li>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn" onclick="myFunctionDT()">EEG Analysis</a>
+      <div class="dropdown-content" id="dropteaching">
+        <a href="./EEG.html">Motivation</a>
+        <a href="./discretization.html">Discretization</a>
+        <a href="./prediction.html">Prediction</a>
+      </div>
+    </li>
+    <li><a href="./about_us.html">About us</a></li>
+    </ul>
+    </div>
+    </header>
+</head>
+
+<body>
+<h1 id="page_title">Static SAX</h1>
+<p>Symbolic Aggregate approXimation Algorithm (SAX) aims to discretize time serie into a sequence of a given alphabet. This alphabet can be whatever you want (letters, numbers, strings ...) seeing as you define it.</p>
+<p>But what exactly is this SAX transformation ? Well, the principle is really easy. <br>
+If we assume that you have a time serie data of length <em>t</em>. Splitting <em>t</em> in <em>x</em> intervals (let assume that <em>x</em> is a divisor or <em>t</em>) will allow to concentrate the major part of information contained in orginal data in <em>x</em> points. For each interval compute the mean value of the <em>t / x</em> points. Then, using quantiles of a given distrbution you can match each mean value to a letter of your alphabet.</p>
+<p style="text-align:center"><img src="./media/illustration_sax.png", alt = "Principle of SAX"></p>
+
+<p>It's common to use the assumption saying that the distribution of x mean values follows a gaussian law, so that gaussian quantiles are used on vertical axis. Of course, this assumption has some strong limits and it exists different works to improve this method. SAX gives really good results and unlike a lot of other methods, it takes linear time to compute so it's really worth it !</p>
+<p>If you want to see Static SAX code, you can click <a href="https://github.com/TimeSeriesAnalysis/EEGAnalysis">here</a>. If you want to see real execution of this algorithm (and our code), learn how to use it, or proof of its efficiency on EEG data, can click <a href="https://github.com/TimeSeriesAnalysis/EEGAnalysis">to change.</a></p>
+</html>
