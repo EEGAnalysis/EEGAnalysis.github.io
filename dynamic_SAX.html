@@ -16,10 +16,10 @@
   /* When the user clicks on the button,
   toggle between hiding and showing the dropdown content */
   function myFunctionDN() {
-      document.getElementById("dropnotes").classList.toggle("show");
+      document.getElementById("droptuto").classList.toggle("show");
   }
   function myFunctionDT() {
-      document.getElementById("dropteaching").classList.toggle("show");
+      document.getElementById("dropeeg").classList.toggle("show");
   }
   // Close the dropdown if the user clicks outside of it
   window.onclick = function(e) {
@@ -35,17 +35,25 @@
     }
   }
   </script>
+
   <header>
     <div class="menutop">
     <ul>
     <li><a href="./index.html">Context</a></li>
     <li class="dropdown">
       <a href="javascript:void(0)" class="dropbtn" onclick="myFunctionDT()">EEG Analysis</a>
-      <div class="dropdown-content" id="dropteaching">
+      <div class="dropdown-content" id="dropeeg">
         <a href="./EEG.html">Motivation</a>
         <a href="./discretization.html">Discretization</a>
         <a href="./prediction.html">Prediction</a>
       </div>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn" onclick="myFunctionDN()">Tutorials</a>
+      <div class="dropdown-content" id="droptuto">
+        <a href="./static_sax_tutorial.html" target = "_blank">Static SAX</a>
+        <a href="#">Dynamic SAX</a>
+      </div>
+    </li>
     </li>
     <li><a href="./about_us.html">About us</a></li>
     </ul>

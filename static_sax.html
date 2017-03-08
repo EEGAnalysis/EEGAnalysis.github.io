@@ -16,10 +16,10 @@
   /* When the user clicks on the button,
   toggle between hiding and showing the dropdown content */
   function myFunctionDN() {
-      document.getElementById("dropnotes").classList.toggle("show");
+      document.getElementById("droptuto").classList.toggle("show");
   }
   function myFunctionDT() {
-      document.getElementById("dropteaching").classList.toggle("show");
+      document.getElementById("dropeeg").classList.toggle("show");
   }
   // Close the dropdown if the user clicks outside of it
   window.onclick = function(e) {
@@ -35,17 +35,25 @@
     }
   }
   </script>
+
   <header>
     <div class="menutop">
     <ul>
     <li><a href="./index.html">Context</a></li>
     <li class="dropdown">
       <a href="javascript:void(0)" class="dropbtn" onclick="myFunctionDT()">EEG Analysis</a>
-      <div class="dropdown-content" id="dropteaching">
+      <div class="dropdown-content" id="dropeeg">
         <a href="./EEG.html">Motivation</a>
         <a href="./discretization.html">Discretization</a>
         <a href="./prediction.html">Prediction</a>
       </div>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn" onclick="myFunctionDN()">Tutorials</a>
+      <div class="dropdown-content" id="droptuto">
+        <a href="./static_sax_tutorial.html" target = "_blank">Static SAX</a>
+        <a href="#">Dynamic SAX</a>
+      </div>
+    </li>
     </li>
     <li><a href="./about_us.html">About us</a></li>
     </ul>
@@ -61,5 +69,5 @@ If we assume that you have a time serie data of length <em>t</em>. Splitting <em
 <p style="text-align:center"><img src="./media/illustration_sax.png", alt = "Principle of SAX"></p>
 
 <p>It's common to use the assumption saying that the distribution of x mean values follows a gaussian law, so that gaussian quantiles are used on vertical axis. Of course, this assumption has some strong limits and it exists different works to improve this method. SAX gives really good results and unlike a lot of other methods, it takes linear time to compute so it's really worth it !</p>
-<p>If you want to see Static SAX code, you can click <a href="https://github.com/TimeSeriesAnalysis/EEGAnalysis">here</a>. If you want to see real execution of this algorithm (and our code), learn how to use it, or proof of its efficiency on EEG data, you can click <a href="https://github.com/TimeSeriesAnalysis/EEGAnalysis">to change.</a></p>
+<p>If you want to see Static SAX code, you can go on our <a href="https://github.com/TimeSeriesAnalysis/EEGAnalysis">repository</a>. If you want to see real execution of this algorithm (and our code), learn how to use it, or proof of its efficiency on EEG data, you can go an see our <a href="./static_sax_tutorial.html">tutorial</a></p>
 </html>

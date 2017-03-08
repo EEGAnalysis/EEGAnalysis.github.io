@@ -16,10 +16,10 @@
   /* When the user clicks on the button,
   toggle between hiding and showing the dropdown content */
   function myFunctionDN() {
-      document.getElementById("dropnotes").classList.toggle("show");
+      document.getElementById("droptuto").classList.toggle("show");
   }
   function myFunctionDT() {
-      document.getElementById("dropteaching").classList.toggle("show");
+      document.getElementById("dropeeg").classList.toggle("show");
   }
   // Close the dropdown if the user clicks outside of it
   window.onclick = function(e) {
@@ -35,17 +35,25 @@
     }
   }
   </script>
+
   <header>
     <div class="menutop">
     <ul>
     <li><a href="./index.html">Context</a></li>
     <li class="dropdown">
       <a href="javascript:void(0)" class="dropbtn" onclick="myFunctionDT()">EEG Analysis</a>
-      <div class="dropdown-content" id="dropteaching">
+      <div class="dropdown-content" id="dropeeg">
         <a href="./EEG.html">Motivation</a>
         <a href="./discretization.html">Discretization</a>
         <a href="./prediction.html">Prediction</a>
       </div>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn" onclick="myFunctionDN()">Tutorials</a>
+      <div class="dropdown-content" id="droptuto">
+        <a href="./static_sax_tutorial.html" target = "_blank">Static SAX</a>
+        <a href="#">Dynamic SAX</a>
+      </div>
+    </li>
     </li>
     <li><a href="./about_us.html">About us</a></li>
     </ul>
@@ -60,6 +68,6 @@
 
 <p>Lately, it has been shown that Recurrential Neural Networks (RNN) is a promising tool to deal with time series. That's why we are working on it, and try to see if we can predict thanks to RNN an event on your EEG. This would be really helpful in medecine. Unfortunately most of all already existing methods need a very expensive and effective equipment to run properly and quickly. That's why we are also, in parallel, working on a potential way to predict EEG seizures and cerebrovascular accident dynamically, i.e for each instant t. Since someone who is likely to have these medical issues can not carry a bulky equipment, we are limiting ourselves to develop a light method to understand and predict EEG.</p>
 
-<p> To achieve this goal, we are currently exploring several already existing works. These works are related to discretization of time series and different method of prediction. Please, refer to the proper section in the menu if you want to know more about it (tutorial included).</p>
+<p> To achieve this goal, we are currently exploring several already existing works. These works are related to discretization of time series and different method of prediction. Please, refer to the proper section in the menu if you want to know more about it.</p>
 </body>
 </html>
