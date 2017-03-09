@@ -148,3 +148,40 @@ ul a {
 ul li:hover { background-color: #8A0808; }
 
 ul li a:hover { background-color: #8A0808; }
+
+
+footer
+{
+    border-top: 2px solid #aaaaaa;
+}
+
+footer p, footer ul
+{ 
+  font-size: 0.8em;
+}
+
+footer h1
+{
+  font-size: 0.8em;
+}
+
+#logo_sponsors
+{
+  margin:auto;
+  text-align:center;
+  border-bottom: 2px solid #aaaaaa;
+}
+
+#logo_fondation
+{
+  display: inline-block;
+  margin:10px 30px;
+  height:120px;
+}
+
+/*#logo_inria
+{
+  display: inline-block;
+  margin:10px 30px;
+  height:80px;
+}*/
