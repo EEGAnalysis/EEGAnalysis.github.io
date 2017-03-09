@@ -61,25 +61,25 @@ table{
 th{
 	font-weight: normal;
 }
-a:link {
+/*a:link {
 	color: #0000EE;
-}
+}*/
 
 /* visited link */
-a:visited {
+/*a:visited {
 	color: #610B21;
-}
+}*/
 
 /* mouse over link */
-a:hover {
+/*a:hover {
 	color: #0000EE;
-}
+}*/
 
 /* selected link */
-a:active {
+/*a:active {
 	color: #610B21;
-}
-.menutop ul {
+}*/
+/*.menutop ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -126,3 +126,84 @@ a:active {
 .menutop .dropdown-content a:hover {background-color: #f1f1f1}
 
 .menutop .show {display:block;}
+
+.menutop .dropdown-submenu {
+    position: relative;
+}
+
+.menutop .dropdown-submenu .dropdowwn-menu{
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}*/
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #333;
+}
+
+ul:hover a{
+      background: #333;
+}
+
+ul li {
+  display: block;
+  position: relative;
+  float: left;
+  background: #333;
+}
+
+/* This hides the dropdowns */
+
+
+li ul { display: none; }
+
+ul li a {
+  display: block;
+  padding: 1em;
+  text-decoration: none;
+  white-space: nowrap;
+  color: #fff;
+}
+
+ul li a:hover { background: #8A0808; }
+
+/* Display the dropdown */
+
+
+li:hover > ul {
+  display: block;
+  position: absolute;
+  background: #333;
+  color: #333;
+}
+
+li:hover li { float: none; }
+
+li:hover a { background: #f9f9f9; }
+
+li:hover li a:hover { background: #2c3e50; }
+
+.main-navigation li ul li { border-top: 0; }
+
+/* Displays second level dropdowns to the right of the first level dropdown */
+
+
+ul ul ul {
+  left: 100%;
+  top: 0;
+}
+
+/* Simple clearfix */
+
+
+
+ul:before,
+ul:after {
+  content: " "; /* 1 */
+  display: table; /* 2 */
+}
+
+ul:after { clear: both; }
