@@ -9,7 +9,12 @@
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="./css/style.css">
 
-  <script src= "http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 <header>
   <nav>
@@ -46,6 +51,8 @@
 <p> In this section, we assume that you do know the SAX tranformation principle. If you don't, please refer to this <a href="./static_sax.html">section</a>.</p>
 <p> We try here to adapt SAX transformation to suit our wish. Just a little reminder, we want here to discretize new captured data as soon as we get them in order to perform online prediction. <br>
 To avoid storing more and more data as and when we are capturing data, we are using some tricks that we explain in the following part.</p>
-<p>First of all, we are using a sliding window whose size is constant. We chose to normalize data thanks to this window's mean value and stadard deviation. That implies to update these 2 parametes. To do that we will need to update these parameters each time we have a new point. To avoid using mean and std function each time (they could be really greedy and we try to do that as fast as possible) we are using some properties about mean and variance. </p>
-<p>Let ts be defined as our dynamic time serie of length N.$$ts_{n} = \{x_1, x_2, ..., x_n\}.$$ The mean value and variance of this time serie are defined as follow $$\mu_n = \frac{1}{N}\sum_{k = 1}^Nx_i \qquad \sigma^2 = \frac{1}{N}\sum_{k = 1}^N(x_i - \mu_n)^2 .$$ Let assume that for this iteration, the new incoming point is $x_{n+1}$ and that the older one is $x_1$.</p>
+<p>First of all, we are using a sliding window whose size is $N$ where $N$ is constant. We chose to normalize data thanks to this window's mean value and stadard deviation. That implies to update these 2 parametes. To do that we will need to update these parameters each time we have a new point. To avoid using mean and std function each time (they could be really greedy and we try to do that as fast as possible) we are using some properties about mean and variance. </p>
+<p>Let $ts_n = \{x_1, x_2, ..., x_n\}$ be defined as our dynamic time serie of length N at time $n$.  <br>
+The mean value and variance of this time serie are defined as follow $$\mu_n = \frac{1}{N}\sum_{k = 1}^nx_i \qquad \sigma_n^2 = \frac{1}{N}\sum_{k = 1}^n(x_i - \mu_n)^2 .$$ Let assume that for this iteration, the new incoming point is $x_{n+1}$ and that the older one is $x_1$. We will have $$\mu_{n+1} = \frac{1}{N}\sum_{k = 2}^{n+1}x_i = \mu_n + \frac{x_{n+1} - x_1}{N}$$</p>
+<p>Concerning the variance it's slighlty more complicated : $$\sigma_{n+1}^2 = \frac{1}{N}\sum_{k = 2}^{n+1}(x_i - \mu_{n+1})^2 = \frac{1}{N}\sum_{k = 2}^{n+1}(x_i^2 - 2\mu_{n+1}x_i + \mu^2_{n+1}) = \frac{1}{N}\Big(\sum_{k = 2}^{n+1}x_i^2 - 2\mu_{n+1}\sum_{k = 2}^{n+1}x_i + N\mu^2_{n+1}\Big) = \frac{1}{N}\Big(\sum_{k = 2}^{n+1}x_i^2 - N\mu^2_{n+1} \Big)$$</p>
 </html>
